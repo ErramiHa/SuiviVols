@@ -1,0 +1,92 @@
+﻿@model SuiviVols.Models.Vol
+
+
+<div class="section-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="booking-cta">
+                    <h1>Book your flight today</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate laboriosam numquam at</p>
+                </div>
+            </div>
+            <div class="col-md-7 col-md-offset-1">
+                <div class="booking-form">
+                    <form asp-action="UpdateVol" asp-controller="Home"
+                          data-ajax="true"
+                          data-ajax-method="POST">
+
+
+                        <input type="hidden" asp-for="@Model.IdVol" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">Aéroport de départ</span>
+                                    <select asp-for="SelectedDepart" asp-items="Model.AeroportsDepart" class="form-control" onchange="getlistAeroport(this)">
+                                        <option value="-1">Sélectionner un aéroport</option>
+                                    </select>
+
+                                    @*@Html.DropDownListFor(m => m.SelectedDepart,Model.AeroportsDepart, new { @class = "form-control" })*@
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">Aéroport d’arrivée</span>
+                                    <select asp-for="SelectedArrivee" asp-items="Model.AeroportsArrivee" class="form-control">
+                                        <option value="-1">Sélectionner un aéroport</option>
+                                    </select>
+
+                                    @*@Html.DropDownListFor(m => m.SelectedArrivee, Model.AeroportsArrivee, new { @class = "form-control" })*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">Date</span>
+                                    <input type="date" asp-for="DateVol" class="form-control" />
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">Kirosène</span>
+                                    <input type="text" asp-for="ConsommationAvion" disabled class="form-control" />
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">Avion</span>
+                                    <select asp-for="SelectedAvion" asp-items="Model.Avions" class="form-control">
+                                        <option value="-1">Sélectionner une avion</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">Distance en Km</span>
+                                    <input type="text" asp-for="DistanceBetweenAero" disabled class="form-control" />
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                       
+                     
+                        <div class="form-btn">
+                            <button type="submit" class="submit-btn">Modifier</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,81 @@
+﻿@model SuiviVols.Models.Vol
+
+
+<div class="section-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="booking-cta">
+                    <h1>Book your flight today</h1>
+                </div>
+            </div>
+            <div class="col-md-7 col-md-offset-1">
+                <div class="booking-form">
+                    <form asp-action="SaveVol" asp-controller="Home"
+                          data-ajax="true"
+                          data-ajax-method="POST">
+                        @if (Model.Errors != null)
+                        {
+                            <ul class="alert alert-danger">
+                                @foreach (var item in Model.Errors)
+                                {
+                                    <li class="text-danger">@item.ToString()</li>
+
+                                }
+                            </ul>
+
+                        }
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">Aéroport de départ</span>
+                                    <select asp-for="SelectedDepart" asp-items="Model.AeroportsDepart" class="form-control" onchange="getlistAeroport(this)">
+                                        <option value="-1">Sélectionner un aéroport</option>
+                                    </select>
+
+                                    @*@Html.DropDownListFor(m => m.SelectedDepart,Model.AeroportsDepart, new { @class = "form-control" })*@
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">Aéroport d’arrivée</span>
+                                    <select asp-for="SelectedArrivee" asp-items="Model.AeroportsArrivee" class="form-control">
+                                        <option value="-1">Sélectionner un aéroport</option>
+                                    </select>
+
+
+                                    @*@Html.DropDownListFor(m => m.SelectedArrivee, Model.AeroportsArrivee, new { @class = "form-control" })*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">Date</span>
+                                    <input type="date" asp-for="DateVol" asp-format="{0:dd/MM/yyyy}" class="form-control" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">Avion</span>
+                                    <select asp-for="SelectedAvion" asp-items="Model.Avions" class="form-control">
+                                        <option value="-1">Sélectionner une avion</option>
+                                    </select>
+                                    <span asp-validation-for="SelectedAvion" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-btn">
+                            <button type="submit" class="submit-btn">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
